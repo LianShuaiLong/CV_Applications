@@ -10,5 +10,5 @@
 理论上可以实现任意风格的转换，不用每组风格训练一个模型
 
 pytorch_demo.py是利用pytorch的原生api做的风格转换
-nst_demo.py是利用nst框架做的风格转换,nst是基于pytorch的风格转换框架
+nst_demo.py是利用pystiche框架做的风格转换,pystiche是基于pytorch的风格转换框架
 
