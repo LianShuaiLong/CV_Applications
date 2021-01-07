@@ -12,3 +12,16 @@
 pytorch_demo.py是利用pytorch的原生api做的风格转换
 nst_demo.py是利用pystiche框架做的风格转换,pystiche是基于pytorch的风格转换框架
 
+## demo 图
+content image:
+
+![image](https://github.com/LianShuaiLong/CV_Applications/blob/master/neural-style-transfer/demo_data/content.png)
+
+style image:
+
+![image](https://github.com/LianShuaiLong/CV_Applications/blob/master/neural-style-transfer/demo_data/style.png) 
+
+result image:
+
+![image](https://github.com/LianShuaiLong/CV_Applications/blob/master/neural-style-transfer/demo_data/pytorch_res.png)
+
