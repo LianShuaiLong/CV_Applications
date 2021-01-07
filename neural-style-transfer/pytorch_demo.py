@@ -23,8 +23,8 @@ def image_loader(image_name):
     image = transform(image).unsqueeze(0)
     return image.to(device,torch.float)
 
-content_image = image_loader('demo_data/style.png')
-style_image = image_loader('demo_data/content.png')
+content_image = image_loader('demo_data/content.png')
+style_image = image_loader('demo_data/style.png')
 
 class ContentLoss(nn.Module):
     def __init__(self,target):
