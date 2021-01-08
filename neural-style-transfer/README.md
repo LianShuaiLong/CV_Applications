@@ -4,7 +4,7 @@
 ## 原理
 利用vgg提取style image的feature进一步将feature的GRAM矩阵作为style image的style feature
 
-利用LBFGS算法可以快速优化content image
+利用LBFGS算法可以在有限迭代次数的前提下高质量优化content image
 
 ## 优点
 理论上可以实现任意风格的转换，不用每组风格训练一个模型
