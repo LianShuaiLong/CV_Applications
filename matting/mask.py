@@ -4,6 +4,7 @@ import os
 import sys
 import glob
 import numpy as np
+from PIL import Image
 
 def parse_parser():
     parser = argparse.ArgumentParser()
@@ -14,14 +15,24 @@ def parse_parser():
     args=parser.parse_args()
     return args
 
-def matting(image,matting,matting_result_folder):
+    
+def matting(image,matte,matting_result_folder):
    print(f'{image} begin to process...')
-   img = cv2.imread(image)
-   print(img.shape,img.dtype)
-   matting = cv2.imread(matting,cv2.IMREAD_GRAYSCALE)
-   print(matting.shape,img.dtype)
-   masked = cv2.bitwise_and(img,img,mask=matting)
-   cv2.imwrite(os.path.join(matting_result_folder,image.split('/')[-1]), masked)
+   img = Image.open(image)
+   w,h = img.width,img.height 
+   img = np.asarray(img)
+   matte = Image.open(matte)
+   if len(img.shape) == 2:
+      img = img[:,:,None]
+   if img.shape[2] == 1:
+      img = np.repeat(img,3,axis=2)
+   elif img.shape[2] == 4:
+      img = img[:,:,0:3]
+   matte = np.repeat(np.asarray(matte)[:,:,None],3,axis=2)/255
+   fg = matte*img+(1-matte)*np.full(img.shape,255)
+   combined = np.concatenate((img, fg, matte * 255), axis=1)
+   combined = Image.fromarray(np.uint8(combined))
+   combined.save(os.path.join(matting_result_folder,image.split('/')[-1]))
    print(f'{image} finish')
   
 
