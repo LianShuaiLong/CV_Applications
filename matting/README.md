@@ -1,1 +1,9 @@
-## 用了作者的预训练模型，将预测的matte作为蒙版与原图做"与"操作，发现效果不理想，正在请教中
+## test results
+
+![image](https://github.com/LianShuaiLong/CV_Applications/blob/master/matting/test_results/multi_combined.png)
+
+![image](https://github.com/LianShuaiLong/CV_Applications/blob/master/matting/test_results/Obama_combined.png)
+
+![image](https://github.com/LianShuaiLong/CV_Applications/blob/master/matting/test_results/beauty_combined.png)
+
+### Notice you will get a better visual result with black background!
