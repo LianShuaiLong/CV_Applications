@@ -6,4 +6,4 @@
 
 ![image](https://github.com/LianShuaiLong/CV_Applications/blob/master/matting/test_results/beauty_combined.png)
 
-### Notice you will get a better visual result with black background!
+### Notice you can change your background to get a better result according to your input!
