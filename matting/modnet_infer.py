@@ -18,12 +18,30 @@ os.environ['CUDA_VISIBLE_DEVICES']='1'
 def parse_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_path',type=str,default='./test_images',help='Test images` root_dir')
-    parser.add_argument('--output_path',type=str,default='./test_result',help='Result images dir')
-    parser.add_argument('--ckpt_path',type=str,default='./models/modnet_photographic_portrait_matting.ckpt',help='Pretrained model path')
+    parser.add_argument('--output_path',type=str,default='./test_results',help='Result images dir')
+    parser.add_argument('--ckpt_path',type=str,default='./model/modnet_photographic_portrait_matting.ckpt',help='Pretrained model path')
     parser.add_argument('--image_type',type=str,default='jpg,jpeg,png',help='Test images suffix')
     parser.add_argument('--input_size',type=int,default=512,help='Input image size')
     args=parser.parse_args()
     return args
+
+def save_fg(img_data,matte_data,filename):
+    w,h = img_data.width,img_data.height
+    img_data = np.asarray(img_data)
+    if len(img_data.shape) ==2:
+       img_data = img_data[:,:,None]
+    if img_data.shape[2]==1:
+       img_data = np.repeat(img_data,3,axis=2)
+    elif img_data.shape[2] ==4:
+       img_data = img_data[:,:,0:3]
+    matte = np.repeat(matte_data[:,:,None],3,axis=2)
+    fg_black = matte*img_data#+(1-matte)*np.full(img_data.shape,0)
+    fg_white = matte*img_data+(1-matte)*np.full(img_data.shape,255)
+    combined = np.concatenate((img_data,matte*255,fg_black,fg_white),axis=1)
+    combined = Image.fromarray(np.uint8(combined))
+    combined.save(filename)
+    return
+    
 
 def infer(images,input_size,ckpt_path,output_path):
     ref_size=input_size
@@ -36,8 +54,8 @@ def infer(images,input_size,ckpt_path,output_path):
     
     for image in images:
         print('Process image:{}'.format(image))
-        img = Image.open(image)
-        img = np.asarray(img)
+        img_data = Image.open(image)
+        img = np.asarray(img_data)
     
         if len(img.shape)==2:
            img = img[:,:,None]
@@ -69,8 +87,10 @@ def infer(images,input_size,ckpt_path,output_path):
    
         matte = F.interpolate(matte,size=(img_h,img_w),mode ='area')
         matte = matte[0][0].data.cpu().numpy()
-        matte_name = image.split('/')[-1].split('.')[0] + '.png'
+        matte_name = image.split('/')[-1].split('.')[0] + '_alpha.png'
         Image.fromarray(((matte * 255).astype('uint8')), mode='L').save(os.path.join(output_path, matte_name))
+        combined_name = os.path.join(output_path,image.split('/')[-1].split('.')[0]+'_combined.png')
+        save_fg(img_data,matte,combined_name)
 
 if __name__=='__main__':
 
