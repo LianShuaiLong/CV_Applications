@@ -17,3 +17,9 @@
 
 - [ ] 4.add fintune code of matting/modnet
 
+## Reference
+1.[Deep Image Matting](https://arxiv.org/pdf/1703.03872.pdf)
+2.[Is a Green Screen Really Necessary for Real-Time Portrait Matting?](https://arxiv.org/pdf/2011.11961.pdf)
+3.[Modnet](https://github.com/ZHKKKe/MODNet)
+4.[pystiche](https://github.com/pmeier/pystiche)
+5.[neural_style_tutorial](https://pytorch.org/tutorials/advanced/neural_style_tutorial.html)
