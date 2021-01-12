@@ -3,7 +3,7 @@
 
   The main purpose of this repo is not to help you train a new model,even we may add train or finetune code in some project,but help you to use cv pretrained models;
  
-  we add ![wiki](https://github.com/LianShuaiLong/CV_Applications/wiki) to help you understand the theory/method of each application!
+  we add [wiki](https://github.com/LianShuaiLong/CV_Applications/wiki) to help you understand the theory/method of each application!
   
   Enjoy yourself!
   
@@ -15,5 +15,5 @@
 
 - [x] 3.update wiki of matting
 
-- [] 4.add fintune code of matting/modnet
+- [ ] 4.add fintune code of matting/modnet
 
