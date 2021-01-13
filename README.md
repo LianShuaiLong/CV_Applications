@@ -11,12 +11,13 @@
 ## To do
 - [x] 1.update wiki of neural style transfer 
 
-- [x] 2.update matting project
+- [x] 2.add code fo image matting based on modnet
 
 - [x] 3.update wiki of matting
 
 - [ ] 4.add fintune code of matting/modnet
 
+- [ ] 5.add code of video matting based on modnet
 ## Reference
 1.[Deep Image Matting](https://arxiv.org/pdf/1703.03872.pdf)
 

@@ -1,6 +1,5 @@
 ## 用途
-给定一张content image和一个style image快速实现content image向style image的风格转换
-
+给定一张content image和一个style image快速实现content image向style image的风格转换;可以在pytorch_demo.py/nst_demo.py里面修改输入图片的路径
 ## 原理
 利用vgg提取style image的feature进一步将feature的GRAM矩阵作为style image的style feature
 
