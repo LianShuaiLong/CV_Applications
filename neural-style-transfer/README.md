@@ -24,3 +24,8 @@ result image:
 
 ![image](https://github.com/LianShuaiLong/CV_Applications/blob/master/neural-style-transfer/demo_data/pytorch_res.png)
 
+## Reference
+1.[pystiche](https://github.com/pmeier/pystiche)
+
+2.[neural_style_tutorial](https://pytorch.org/tutorials/advanced/neural_style_tutorial.html)
+

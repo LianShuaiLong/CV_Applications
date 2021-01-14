@@ -17,7 +17,7 @@
 
 - [ ] 4.add fintune code of matting/modnet
 
-- [ ] 5.add code of video matting based on modnet
+- [x] 5.add code of video matting based on modnet
 ## Reference
 1.[Deep Image Matting](https://arxiv.org/pdf/1703.03872.pdf)
 
@@ -28,3 +28,9 @@
 4.[pystiche](https://github.com/pmeier/pystiche)
 
 5.[neural_style_tutorial](https://pytorch.org/tutorials/advanced/neural_style_tutorial.html)
+
+6.[opencv读取图像格式-HWC](https://blog.csdn.net/qq_39938666/article/details/86701344)
+
+7.[Tensor.repeat vs np.repeat](https://blog.csdn.net/qq_39938666/article/details/88412817?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2.control)
+
+8.[opencv写视频流的格式](https://blog.csdn.net/qq_34877350/article/details/89415672)
