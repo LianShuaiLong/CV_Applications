@@ -2,7 +2,7 @@
 ### image matting
 python image_matting.py --input_path PATH_TO_TEST_IMAGES --output_path PATH_TO_SAVE_RESULT --ckpt_path PATH_TO_PRETRAINED_MODEL --image_type IMAGE_TYPE --input_size INPUT_IMAGE_SIZE
 
-### image matting results
+### image matting
 
 ![image](https://github.com/LianShuaiLong/CV_Applications/blob/master/matting/test_results/multi_combined.png)
 
@@ -14,6 +14,10 @@ From left to the right : Input image,predicted alpha matte,predicted foreground 
 ### Notice you can change your background to get a better result according to your input!
 
 ### video matting
+
+<iframe height=498 width=510 src="https://github.com/LianShuaiLong/CV_Applications/blob/master/matting/test_videos/demo.mp4">
+
+<iframe height=498 width=510 src="https://github.com/LianShuaiLong/CV_Applications/blob/master/matting/video_results/demo.mp4">
 
 
 ## Reference
