@@ -62,9 +62,9 @@ def matting(video,result,alpah_matte=False,fps=30,GIF=True):
     with tqdm(range(frame_num)) as t:
          for c in t:
              frame_np = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+             frame_np = cv2.resize(frame_np,(rw,rh),cv2.INTER_AREA)
              if GIF:
                 src_video_frames.append(frame_np)
-             frame_np = cv2.resize(frame_np,(rw,rh),cv2.INTER_AREA)
              frame_PIL = Image.fromarray(frame_np)
              frame_tensor = transform(frame_PIL)
              frame_tensor = frame_tensor[None,:,:,:]
@@ -82,13 +82,12 @@ def matting(video,result,alpah_matte=False,fps=30,GIF=True):
              view_np = cv2.resize(view_np, (frame_width,frame_height))
              video_writer.write(view_np)
              if GIF:
-                res_video_frames.append(view_np_.astype(np.uint8))
+                res_video_frames.append(cv2.resize(view_np_.astype(np.uint8),(rw,rh),cv2.INTER_AREA))
              retval, frame = Cap.read()
              c += 1
 
     video_writer.release()
     if GIF:
-       #pdb.set_trace()
        src_gif = video.rsplit('.',1)[0]+'.gif'
        res_gif = result.rsplit('.',1)[0]+'.gif'
        frame_2_gif(src_video_frames,src_gif)
