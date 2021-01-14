@@ -6,6 +6,7 @@ import torchvision.transforms as transforms
 from PIL import Image
 import numpy as np
 import cv2
+import imageio
 
 import argparse
 import os
@@ -25,11 +26,18 @@ def parse_parser():
     parser.add_argument('--model_path',type=str,default='./model/modnet_webcam_portrait_matting.ckpt',help='Pretrained model path')
     parser.add_argument('--fps',type=int,default=20)
     parser.add_argument('--result-type', type=str, default='fg', choices=['fg', 'matte'],help='matte - save the alpha matte; fg - save the foreground')
+    parser.add_argument('--save_gif',type=bool,default=True,help='Save result video in GIF format')
     args=parser.parse_args()
     return args
     
+def frame_2_gif(frames_list,gif_name):
+    imageio.mimsave(gif_name,frames_list,'GIF') 
+    print(f'save {gif_name}') 
+    return  
 
-def matting(video,result,alpah_matte=False,fps=30):
+def matting(video,result,alpah_matte=False,fps=30,GIF=True):
+    src_video_frames=[]
+    res_video_frames=[]
     Cap = cv2.VideoCapture(video)
     if Cap.isOpened():
        retval,frame = Cap.read()
@@ -54,6 +62,8 @@ def matting(video,result,alpah_matte=False,fps=30):
     with tqdm(range(frame_num)) as t:
          for c in t:
              frame_np = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+             if GIF:
+                src_video_frames.append(frame_np)
              frame_np = cv2.resize(frame_np,(rw,rh),cv2.INTER_AREA)
              frame_PIL = Image.fromarray(frame_np)
              frame_tensor = transform(frame_PIL)
@@ -65,17 +75,25 @@ def matting(video,result,alpah_matte=False,fps=30):
              matte_tensor = matte_tensor.repeat(1,3,1,1)#(B,C,H,W),repeat 3 times in dim Channel
              matte_np = matte_tensor[0].data.cpu().numpy().transpose(1, 2, 0)
              if alpha_matte:
-                view_np = matte_np * np.full(frame_np.shape, 255.0)
+                view_np_ = matte_np * np.full(frame_np.shape, 255.0)
              else:
-                view_np = matte_np * frame_np + (1 - matte_np) * np.full(frame_np.shape, 255.0)
-             view_np = cv2.cvtColor(view_np.astype(np.uint8), cv2.COLOR_RGB2BGR)
+                view_np_ = matte_np * frame_np + (1 - matte_np) * np.full(frame_np.shape, 255.0)
+             view_np = cv2.cvtColor(view_np_.astype(np.uint8), cv2.COLOR_RGB2BGR)
              view_np = cv2.resize(view_np, (frame_width,frame_height))
              video_writer.write(view_np)
-
+             if GIF:
+                res_video_frames.append(view_np_.astype(np.uint8))
              retval, frame = Cap.read()
              c += 1
 
     video_writer.release()
+    if GIF:
+       #pdb.set_trace()
+       src_gif = video.rsplit('.',1)[0]+'.gif'
+       res_gif = result.rsplit('.',1)[0]+'.gif'
+       frame_2_gif(src_video_frames,src_gif)
+       frame_2_gif(res_video_frames,res_gif)
+       
     print('Save the result video to {0}'.format(result))
 
             
@@ -105,7 +123,8 @@ if __name__=='__main__':
     modnet.eval()
     result = os.path.join(args.output_path,video_path.split('/')[-1].split('.')[0]+'.mp4')
     alpha_matte = True if args.result_type == 'matte' else False
-    matting(video_path,result,alpha_matte,fps=args.fps)
+    GIF = True if args.save_gif else False
+    matting(video_path,result,alpha_matte,args.fps,GIF)
     
         
 
