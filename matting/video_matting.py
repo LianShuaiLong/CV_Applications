@@ -29,6 +29,21 @@ def parse_parser():
     parser.add_argument('--save_gif',type=bool,default=True,help='Save result video in GIF format')
     args=parser.parse_args()
     return args
+
+def combine_frames(src_video_frames,res_video_frames,rw,rh):
+    if rw>=rh:
+       rh_ = 256
+       rw_ = int(rw/rh*256)
+    else:
+       rw_ = 256
+       rh_ = int(rh/rw*256)
+    src_res_video_frames=[]
+    for i,frame in enumerate(src_video_frames):
+        item1 = cv2.resize(frame,(rw_,rh_))
+        item2 = cv2.resize(res_video_frames[i],(rw_,rh_))
+        src_res_video_frames.append(np.concatenate((item1,item2),axis=1))
+    return src_res_video_frames
+       
     
 def frame_2_gif(frames_list,gif_name):
     imageio.mimsave(gif_name,frames_list,'GIF') 
@@ -88,10 +103,13 @@ def matting(video,result,alpah_matte=False,fps=30,GIF=True):
 
     video_writer.release()
     if GIF:
+       src_video_frames = combine_frames(src_video_frames,res_video_frames,rw,rh)
        src_gif = video.rsplit('.',1)[0]+'.gif'
        res_gif = result.rsplit('.',1)[0]+'.gif'
+       src_res_gif = result.rsplit('.',1)[0]+'_res.gif'
        frame_2_gif(src_video_frames,src_gif)
        frame_2_gif(res_video_frames,res_gif)
+       frame_2_gif(src_video_frames,src_res_gif)
        
     print('Save the result video to {0}'.format(result))
 
