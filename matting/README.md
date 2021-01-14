@@ -15,9 +15,9 @@ From left to the right : Input image,predicted alpha matte,predicted foreground 
 
 ### video matting
 
-![image]("https://github.com/LianShuaiLong/CV_Applications/blob/master/matting/test_videos/demo.gif")
+![image](https://github.com/LianShuaiLong/CV_Applications/blob/master/matting/test_videos/demo.gif)
 
-![image]("https://github.com/LianShuaiLong/CV_Applications/blob/master/matting/video_results/demo.gif)
+![image](https://github.com/LianShuaiLong/CV_Applications/blob/master/matting/video_results/demo.gif)
 
 
 ## Reference
