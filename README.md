@@ -20,7 +20,9 @@
 
 - [x] 5.add code of video matting based on modnet
 
-- [ ] 6.add reading-notes/wiki of RepVGG
+- [x] 6.add reading-notes/wiki of RepVGG
+
+- [x] 7.add reading-notes/wiki of ViT
 
 ## Reference
 1.[Deep Image Matting](https://arxiv.org/pdf/1703.03872.pdf)
