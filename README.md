@@ -24,6 +24,8 @@
 
 - [x] 7.add reading-notes/wiki of ViT
 
+- [ ] 8.add train code of RepVGG
+
 ## Reference
 1.[Deep Image Matting](https://arxiv.org/pdf/1703.03872.pdf)
 
@@ -40,3 +42,19 @@
 7.[Tensor.repeat vs np.repeat](https://blog.csdn.net/qq_39938666/article/details/88412817?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2.control)
 
 8.[opencv写视频流的格式](https://blog.csdn.net/qq_34877350/article/details/89415672)
+
+9.[ViT知乎解读](https://zhuanlan.zhihu.com/p/266311690)
+
+10.[Multi-self-attention](https://zhuanlan.zhihu.com/p/109983672)
+
+11.[RepVGG论文](https://arxiv.org/pdf/2101.03697.pdf)
+
+12.[RepVGG作者讲解](https://www.zhihu.com/people/ding-xiao-yi-93/posts)
+
+13.[RepVGG知乎讲解](https://zhuanlan.zhihu.com/p/343660471)
+
+14.[卷积神经网络中的Winograd快速卷积算法](https://www.cnblogs.com/shine-lee/p/10906535.html)
+
+15.[CNN中的FLOPs](https://www.zhihu.com/question/65305385)
+
+16.[CNN中的FLOPS,MAC,模型并行度](https://zhuanlan.zhihu.com/p/144938518)
