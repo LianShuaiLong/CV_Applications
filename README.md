@@ -26,6 +26,7 @@
 
 - [ ] 8.add train code of RepVGG
 
+- [ ] 9.add different versions of Conv Layer in CV application-deadline:2021.01.24
 ## Reference
 1.[Deep Image Matting](https://arxiv.org/pdf/1703.03872.pdf)
 
