@@ -1,0 +1,10 @@
+https://github.com/pytorch/vision/blob/master/torchvision/models/
+
+BN:https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html?highlight=batchnorm#torch.nn.BatchNorm2d
+IN:https://pytorch.org/docs/stable/generated/torch.nn.InstanceNorm2d.html?highlight=instancenorm#torch.nn.InstanceNorm2d
+LayerNorm:https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html?highlight=layernorm#torch.nn.LayerNorm
+GroupNorm:https://pytorch.org/docs/stable/generated/torch.nn.GroupNorm.html?highlight=groupnorm#torch.nn.GroupNorm
+GroupNorm:num_groups=in_channels-->IN Style transfer
+          num_groups=1-->LayerNorm RNN
+SwitchableNorm: w1*LN+w2*IN+w3*BN
+***https://blog.csdn.net/shanglianlm/article/details/85075706
