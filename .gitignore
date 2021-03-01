@@ -1,1 +1,3 @@
 *.tgz
+classification/classification-pytorch/dataset/cifar10/
+classification/classification-pytorch/checkpoint/
