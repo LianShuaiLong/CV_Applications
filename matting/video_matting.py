@@ -26,7 +26,7 @@ def parse_parser():
     parser.add_argument('--model_path',type=str,default='./model/modnet_webcam_portrait_matting.ckpt',help='Pretrained model path')
     parser.add_argument('--fps',type=int,default=20)
     parser.add_argument('--result-type', type=str, default='fg', choices=['fg', 'matte'],help='matte - save the alpha matte; fg - save the foreground')
-    parser.add_argument('--save_gif',type=bool,default=True,help='Save result video in GIF format')
+    parser.add_argument('--save_gif',type=bool,default=False,help='Save result video in GIF format')
     args=parser.parse_args()
     return args
 
@@ -62,6 +62,7 @@ def matting(video,result,alpah_matte=False,fps=30,GIF=True):
     frame_num = int(Cap.get(cv2.CAP_PROP_FRAME_COUNT))
     frame_width = int(Cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     frame_height = int(Cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    fps = Cap.get(cv2.CAP_PROP_FPS)
     if frame_width>=frame_height:
        rh = 512
        rw = int(frame_width/frame_height*512)
@@ -99,7 +100,7 @@ def matting(video,result,alpah_matte=False,fps=30,GIF=True):
              if GIF:
                 res_video_frames.append(cv2.resize(view_np_.astype(np.uint8),(rw,rh),cv2.INTER_AREA))
              retval, frame = Cap.read()
-             c += 1
+             #c += 1
 
     video_writer.release()
     if GIF:
@@ -118,6 +119,7 @@ if __name__=='__main__':
 
     args = parse_parser()
     model_path = args.model_path
+    os.makedirs(args.output_path,exist_ok=True)
     if not os.path.isfile(model_path):
        print(f'Cannot find pretrained model:{model_path}')
        sys.exit(0)
