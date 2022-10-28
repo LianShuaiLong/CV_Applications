@@ -27,6 +27,8 @@
 - [ ] 8.add train code of RepVGG
 
 - [ ] 9.add different versions of Conv Layer in CV application-deadline:2021.01.24
+
+- [ ] 10. add DDPM demo(code based on ddpm_mnist)
 ## Reference
 1.[Deep Image Matting](https://arxiv.org/pdf/1703.03872.pdf)
 
@@ -59,3 +61,5 @@
 15.[CNN中的FLOPs](https://www.zhihu.com/question/65305385)
 
 16.[CNN中的FLOPS,MAC,模型并行度](https://zhuanlan.zhihu.com/p/144938518)
+
+17.[ddpm_mnist](https://github.com/xiaohu2015/nngen/blob/main/models/diffusion_models/ddpm_mnist.ipynb)
